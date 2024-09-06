@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>member/list.html</title>
+</head>
+<body>
+<h1>회원목록</h1>
+<table>
+    <tr>
+        <th>아이디</th>
+        <th>비밀번호</th>
+        <th>이메일</th>
+        <th>나이</th>
+        <th>가입일</th>
+    </tr>
+    <tr th:each="m : ${list}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.pwd}"></td>
+        <td th:text="${m.email}"></td>
+        <td th:text="${m.age}"></td>
+        <td th:text="${m.regdate}"></td>
+        <td><a th:href="@{/member/delete(id=${m.id})}">삭제</a></td>
+        <td><a th:href="@{/member/update(id=${m.id})}">수정</a></td>
+    </tr>
+</table>
+</body>
+</html>
