@@ -77,6 +77,7 @@ public class BoardService {
 
 
     //글수정
+    //update 메서드에서 save()를 호출하지 않더라도 트랜잭션이 알아서 해줌
     public BoardDto update(BoardDto dto) {
         Member member = memberRepository.findById(dto.getId())
                 .orElseThrow(() -> new RuntimeException(("Member with id " + dto.getId() + " not found")));

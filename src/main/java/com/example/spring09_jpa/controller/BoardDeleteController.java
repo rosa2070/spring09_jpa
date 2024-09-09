@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class BoardDeleteController {
@@ -13,8 +14,9 @@ public class BoardDeleteController {
     BoardService boardService;
 
     @GetMapping("/board/delete")
-    public String delete(@RequestParam("num") Long num, Model model) {
+    public String delete(@RequestParam("num") Long num, RedirectAttributes redirectAttributes) {
         boardService.delete(num);
+        redirectAttributes.addFlashAttribute("msg", "삭제완료!");
         return "redirect:/board/list";
     }
 
