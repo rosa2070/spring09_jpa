@@ -1,8 +1,7 @@
 package com.example.spring09_jpa.controller;
 
-import com.example.spring09_jpa.dto.MemberDto;
-import com.example.spring09_jpa.entity.Member;
-import com.example.spring09_jpa.service.MemberService;
+import com.example.spring09_jpa.dto.BoardDto;
+import com.example.spring09_jpa.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,26 +10,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class UpdateController {
-    @Autowired
-    MemberService service;
+public class BoardUpdateController {
 
-    @GetMapping("/member/update")
-    String updateForm(@RequestParam("id") String id, Model model) {
-        MemberDto member = service.select(id);
-        model.addAttribute("member", member);
-        return "member/update";
+    @Autowired
+    private BoardService boardService;
+
+    @GetMapping("/board/update")
+    String updateForm(@RequestParam("num") Long num, Model model) {
+        BoardDto board = boardService.select(num);
+        model.addAttribute("board", board);
+        return "board/update";
     }
 
-    @PostMapping("/member/update")
-    String update(MemberDto member, Model model) {
+    @PostMapping("/board/update")
+    String update(BoardDto board, Model model) {
         try {
-            service.update(member);
+            boardService.update(board);
             model.addAttribute("result", "회원수정성공!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             model.addAttribute("result", "회원수정실패");
         }
-        return "member/result";
+        return "board/result";
     }
+
 }

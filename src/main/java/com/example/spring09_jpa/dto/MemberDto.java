@@ -26,8 +26,17 @@ public class MemberDto {
     }
 
     public Member toEntity() {
-        Member m = new Member(id, pwd, email, age, regdate);
+        //Member m = new Member(id, pwd, email, age, regdate);
+        Member m = Member.builder() // 파라미터 순서 의식하지 않아도 됨
+                .id(this.id)
+                .pwd(this.pwd)
+                .email(this.email)
+                .age(this.age)
+                .regdate(this.regdate)
+                .build();
         return m;
+
+
     }
 
 
