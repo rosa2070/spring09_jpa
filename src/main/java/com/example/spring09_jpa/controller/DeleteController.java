@@ -13,7 +13,7 @@ public class DeleteController {
     MemberService service;
 
     @GetMapping("/member/delete")
-    public String delete(@RequestParam("id") String id, Model model) {
+    public String delete(@RequestParam("id") String id) {
         service.delete(id);
         return "redirect:/member/list";
 
